@@ -21,8 +21,8 @@ public class WaypointProvider : MonoBehaviour
     void Start()
     {
         waypoints = GetComponentsInChildren<Transform>().ToList();
-        waypoints.RemoveAt(0); // odstranìní background
-        waypoints.RemoveAt(0); // odstranìní spawnu
+        waypoints.RemoveAt(0); // odstranï¿½nï¿½ background
+        waypoints.RemoveAt(0); // odstranï¿½nï¿½ spawnu
     }
 
     public Transform GetNextWaypoint(Transform currentWaypoint)

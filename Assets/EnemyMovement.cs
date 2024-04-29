@@ -23,6 +23,11 @@ public class EnemyMovement : MonoBehaviour
 
         if(Vector3.Distance(transform.position, currentWaypoint.position) < 0.1f)
         {
+            if (currentWaypoint == WaypointProvider.Instance.Waypoints.Last())
+            {
+                Destroy(gameObject);
+                return;
+            }
             currentWaypoint = WaypointProvider.Instance.GetNextWaypoint(currentWaypoint);
         }
     }
