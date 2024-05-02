@@ -36,6 +36,11 @@ public class BuildingManager : MonoBehaviour
     {
         if (currentPlaceholder != null) {
             currentPlaceholder.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            if(Input.GetMouseButtonDown(0))
+            {
+                //CommandQueue.Instance.EnqueueCommand(new BuildCommand(currentPlaceholder.GetComponent<Building>(), currentPlaceholder.transform.position));
+                currentPlaceholder = null;
+            }
         }
     }
 }

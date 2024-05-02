@@ -771,6 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingData: {fileID: 11400000, guid: 77cecc9368c43ce499f57dc4977a72f1, type: 2}
+  buildManager: {fileID: 1385902146}
   button: {fileID: 5107630494790805714, guid: ec0e94216b362614ba2604842dbafefd, type: 3}
 --- !u!1 &1308156999
 GameObject:

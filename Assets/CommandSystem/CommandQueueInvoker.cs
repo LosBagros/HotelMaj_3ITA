@@ -8,7 +8,7 @@ public class CommandQueueInvoker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExecuteNextCommand());    
+        StartCoroutine(ExecuteNextCommand());
     }
 
     private IEnumerator ExecuteNextCommand()
