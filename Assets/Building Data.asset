@@ -15,10 +15,10 @@ MonoBehaviour:
   data:
   - name: Laser Tower
     price: 50
-    prefab: {fileID: 0}
-  - name: Rotation orb
+    prefab: {fileID: 2983363478714676735, guid: f46a1b566edbd124498a9e49eda4dce7, type: 3}
+  - name: Rotation Orb
     price: 80
-    prefab: {fileID: 0}
-  - name: Projectile tower
+    prefab: {fileID: 5063435482714476736, guid: b8b38dc4199e03b4b8dd35906ed77040, type: 3}
+  - name: Projectile Tower
     price: 150
-    prefab: {fileID: 0}
+    prefab: {fileID: 5953286352070779394, guid: e5786a0dd24743b44ad7aefc3fc94233, type: 3}

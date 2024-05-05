@@ -26,10 +26,8 @@ public class BuildingUI : MonoBehaviour
             if (buttonText != null)
             {
                 buttonText.text = towerData.name;
-                newButton.onClick.AddListener(() => buildManager.GetComponent<BuildingManager>().Test());
+                newButton.onClick.AddListener(() => buildManager.GetComponent<BuildingManager>().CreateBuildingPlaceholder(towerData.prefab));
             }
-
         }
-
     }
 }

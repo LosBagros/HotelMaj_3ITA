@@ -16,13 +16,14 @@ public class BuildingManager : MonoBehaviour
 
     private GameObject currentPlaceholder;
 
-    public void Test() {
-
-        currentPlaceholder = Instantiate(buildingPlaceHolder);
-    }
-
-    public void CreateBuildingPlaceholder(BuildingType buildingType)
+    public void CreateBuildingPlaceholder(Building buildingPrefab)
     {
+        if (currentPlaceholder != null)
+        {
+            Destroy(currentPlaceholder);
+        }
+        currentPlaceholder = Instantiate(buildingPrefab.gameObject);
+
     }
 
     // Start is called before the first frame update
@@ -36,15 +37,12 @@ public class BuildingManager : MonoBehaviour
     {
         if (currentPlaceholder != null) {
             currentPlaceholder.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            currentPlaceholder.transform.position = new Vector3(currentPlaceholder.transform.position.x, currentPlaceholder.transform.position.y, 0);
             if(Input.GetMouseButtonDown(0))
             {
-                //CommandQueue.Instance.EnqueueCommand(new BuildCommand(currentPlaceholder.GetComponent<Building>(), currentPlaceholder.transform.position));
+                CommandQueue.Instance.EnqueueCommand(new BuildCommand(currentPlaceholder.GetComponent<Building>(), currentPlaceholder.transform.position));
                 currentPlaceholder = null;
             }
         }
     }
-}
-public enum BuildingType
-{
-    Policeman
 }
