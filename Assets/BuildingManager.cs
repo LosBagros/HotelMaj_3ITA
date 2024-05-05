@@ -16,6 +16,9 @@ public class BuildingManager : MonoBehaviour
 
     private GameObject currentPlaceholder;
 
+    [SerializeField]
+    private List<GameObject> allowedAreas;
+
     public void CreateBuildingPlaceholder(Building buildingPrefab)
     {
         if (currentPlaceholder != null)
@@ -38,11 +41,30 @@ public class BuildingManager : MonoBehaviour
         if (currentPlaceholder != null) {
             currentPlaceholder.transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             currentPlaceholder.transform.position = new Vector3(currentPlaceholder.transform.position.x, currentPlaceholder.transform.position.y, 0);
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown("escape"))
             {
+                Debug.Log("Destroying placeholder");
+                Destroy(currentPlaceholder);
+                currentPlaceholder = null;
+            }
+            if(Input.GetMouseButtonDown(0) && CheckPlaceholderPosition(currentPlaceholder.transform.position))
+            { 
                 CommandQueue.Instance.EnqueueCommand(new BuildCommand(currentPlaceholder.GetComponent<Building>(), currentPlaceholder.transform.position));
                 currentPlaceholder = null;
             }
         }
     }
+    bool CheckPlaceholderPosition(Vector2 position)
+    {
+        foreach (GameObject area in allowedAreas)
+        {
+            PolygonCollider2D polygonCollider = area.GetComponent<PolygonCollider2D>();
+            if (polygonCollider != null && polygonCollider.OverlapPoint(position))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
