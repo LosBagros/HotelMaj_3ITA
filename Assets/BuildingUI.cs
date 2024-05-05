@@ -25,8 +25,10 @@ public class BuildingUI : MonoBehaviour
             TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
             if (buttonText != null)
             {
-                buttonText.text = towerData.name;
-                newButton.onClick.AddListener(() => buildManager.GetComponent<BuildingManager>().CreateBuildingPlaceholder(towerData.prefab));
+                buttonText.text = towerData.name + " " + towerData.price + "$";
+                buttonText.fontSize = 20;
+                newButton.onClick.AddListener(() => buildManager.GetComponent<BuildingManager>().CreateBuildingPlaceholder(towerData.prefab, towerData.price));
+
             }
         }
     }

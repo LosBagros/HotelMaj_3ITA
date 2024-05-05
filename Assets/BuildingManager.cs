@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    /*
-     
-    TODO: Cannot call CreateBuildingPlaceholder from button
-     
-     */
     Camera mainCamera;
 
     [SerializeField]
@@ -19,8 +14,17 @@ public class BuildingManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> allowedAreas;
 
-    public void CreateBuildingPlaceholder(Building buildingPrefab)
+    [SerializeField]
+    private Money money;
+
+    private int buildingPrice;
+    public void CreateBuildingPlaceholder(Building buildingPrefab, int price)
     {
+        if(!money.CanAfford(price))
+        {
+            return;
+        }
+        buildingPrice = price;
         if (currentPlaceholder != null)
         {
             Destroy(currentPlaceholder);
@@ -48,9 +52,10 @@ public class BuildingManager : MonoBehaviour
                 currentPlaceholder = null;
             }
             if(Input.GetMouseButtonDown(0) && CheckPlaceholderPosition(currentPlaceholder.transform.position))
-            { 
+            {
                 CommandQueue.Instance.EnqueueCommand(new BuildCommand(currentPlaceholder.GetComponent<Building>(), currentPlaceholder.transform.position));
                 currentPlaceholder = null;
+                money.SpendMoney(buildingPrice);
             }
         }
     }
